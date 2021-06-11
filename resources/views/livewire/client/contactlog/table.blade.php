@@ -1,5 +1,5 @@
 <div class="card-body">
-    <table id="table_id" class="display" style="width:100%;">
+    {{-- <table id="table_id" class="display" style="width:100%;">
         <thead>
             <tr>
                 <th>Name</th>
@@ -10,7 +10,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($contactlogs as $contactlog)
+            @foreach ($callLogList as $contactlog)
             <tr>
                 <td>{{$contactlog->name}}</td>
                 <td>{{$contactlog->phone_number}}</td>
@@ -27,5 +27,6 @@
         $(document).ready( function () {
         $('#table_id').DataTable();
     } );
-</script>
+</script> --}}
+<H1>call logs</H1>
 </div>

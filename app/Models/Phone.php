@@ -31,4 +31,7 @@ class Phone extends Model
     public function simcard() {
         return $this->hasMany('App\Models\Simcard','imei','imei');
     }
+    public function app() {
+        return $this->hasMany('App\Models\App','imei','imei');
+    }
 }

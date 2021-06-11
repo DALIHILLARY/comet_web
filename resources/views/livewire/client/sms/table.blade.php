@@ -1,4 +1,4 @@
-<div class="card-body">
+{{-- <div class="card-body">
     <table id="table_id" class="display" style="width:100%;">
         <thead>
             <tr>
@@ -25,4 +25,4 @@
         $('#table_id').DataTable();
     } );
 </script>
-</div>
+</div> --}}

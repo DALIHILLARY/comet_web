@@ -56,31 +56,7 @@
         <a href="{{url('/')}}" class="brand-link">
           <span class="brand-text font-weight-light"><h3>HELLO</h3></span>
         </a>
-
-        <!-- Sidebar -->
-        <div class="sidebar">
-
-          <!-- Sidebar Menu -->
-          <nav class="mt-2">
-                @include('layouts.sidemenu')
-          </nav>
-          <!-- /.sidebar-menu -->
-        </div>
-        <!-- /.sidebar -->
-      </aside>
-
-      <!-- Content Wrapper. Contains page content -->
-      <div class="content-wrapper">
-        <!-- Main content -->
-        <section class="content">
-
-          <div class="container-fluid">
-            @yield('content')
-          </div>
-        </section>
-        <!-- /.content -->
-      </div>
-      <!-- /.content-wrapper -->
+        {{ $slot }}
 
       {{-- <footer class="main-footer">
         <div class="float-right d-none d-sm-block">
@@ -99,8 +75,8 @@
     <!-- ./wrapper -->
 
 
-<!-- jQuery -->
-<script src="{{URL::asset('assets/adminite/plugins/jquery/jquery.min.js')}}"></script>
+{{-- <!-- jQuery -->
+<script src="{{URL::asset('assets/adminite/plugins/jquery/jquery.min.js')}}"></script> --}}
 <!-- jQuery UI 1.11.4 -->
 <script src="{{URL::asset('assets/adminite/plugins/jquery-ui/jquery-ui.min.js')}}"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
