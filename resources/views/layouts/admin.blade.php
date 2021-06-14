@@ -30,8 +30,15 @@
  <!-- DataTables -->
   <link rel="stylesheet" href="{{URL::asset('assets/adminite/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
   <link rel="stylesheet" href="{{URL::asset('assets/adminite/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+  integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+  crossorigin=""/>
+  <script src="{{URL::asset('assets/adminite/plugins/jquery/jquery.min.js')}}"></script>
 
- <script src="{{URL::asset('assets/adminite/plugins/jquery/jquery.min.js')}}"></script>
+   <!-- Make sure you put this AFTER Leaflet's CSS -->
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+  integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+  crossorigin=""></script>
   @stack('css')
 </head>
 
@@ -49,15 +56,7 @@
 
       </nav>
       <!-- /.navbar -->
-
-      <!-- Main Sidebar Container -->
-      <aside class="main-sidebar sidebar-dark-primary elevation-4">
-        <!-- Brand Logo -->
-        <a href="{{url('/')}}" class="brand-link">
-          <span class="brand-text font-weight-light"><h3>HELLO</h3></span>
-        </a>
-        {{ $slot }}
-
+        @livewire('client.home')
       {{-- <footer class="main-footer">
         <div class="float-right d-none d-sm-block">
           <b>Version</b> 3.0.5

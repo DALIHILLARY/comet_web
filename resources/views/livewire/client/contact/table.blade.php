@@ -8,11 +8,11 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($contacts as $contact)
+            @foreach ($contactList as $contact)
             <tr>
                 <td>{{$contact->name}}</td>
                 <td>{{$contact->phone_number}}</td>
-                <td>{{\App\Models\ContactLog::where("phone_number",$contact->phone_number)->count()}}</td>
+                <td>{{$contact->contactLog->count()}}</td>
             </tr>
             @endforeach
 

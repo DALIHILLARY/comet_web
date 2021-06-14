@@ -15,9 +15,6 @@ use App\Http\Livewire\Client\Whatsapp;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 Route::get('test',Home::class);
 Route::get('whatsapp',Whatsapp::class);
 
@@ -26,7 +23,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
-    Route::view('/', 'client.dashboard');
+    Route::view('/','layouts.admin');
     Route::view('dashboard', 'client.dashboard');
     Route::view('sms', 'client.sms');
     Route::view('browser', 'client.browsers');

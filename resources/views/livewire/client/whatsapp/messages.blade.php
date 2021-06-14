@@ -1,5 +1,5 @@
 <div>
-    {{-- @foreach ( $whatsappList as $message)
+    @foreach ( $whatsappConversationList as $message)
     @if($message->type == "incoming")
         <!-- Message. Default to the left -->
         <div class="direct-chat-msg">
@@ -32,6 +32,5 @@
 
     @endif
 
-    @endforeach --}}
-    <h1>WHATSAPP</h1>
+    @endforeach
 </div>

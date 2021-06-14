@@ -14,10 +14,11 @@ class CreatePhonesTable extends Migration
     public function up()
     {
         Schema::create('phones', function (Blueprint $table) {
+            $table->id();
             $table->string("imei");
             $table->string("model");
             $table->string("readable_name")->nullable();
-            $table->string("mobile_access_token");
+            $table->foreignId("mobile_access_token_id");
             $table->timestamps();
         });
     }

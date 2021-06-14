@@ -1,5 +1,5 @@
 <div class="card-body">
-    {{-- <table id="table_id" class="display" style="width:100%;">
+    <table id="table_id" class="display" style="width:100%;">
         <thead>
             <tr>
                 <th>Name</th>
@@ -16,7 +16,13 @@
                 <td>{{$contactlog->phone_number}}</td>
                 <td>{{$contactlog->duration}}</td>
                 <td>{{$contactlog->date}}</td>
-                <td>{{$contactlog->type}}</td>
+                @if($contactlog->type == 1)
+                    <td>RECEIVED</td>
+                @elseif ($contactlog->type == 2)
+                    <td>OUTGOING</td>
+                @else
+                    <td>MISSED</td>
+                @endif
             </tr>
             @endforeach
 
@@ -27,6 +33,5 @@
         $(document).ready( function () {
         $('#table_id').DataTable();
     } );
-</script> --}}
-<H1>call logs</H1>
+</script>
 </div>

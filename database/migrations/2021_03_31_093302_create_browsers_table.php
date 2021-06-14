@@ -14,6 +14,7 @@ class CreateBrowsersTable extends Migration
     public function up()
     {
         Schema::create('browsers', function (Blueprint $table) {
+            $table->id();
             $table->string("imei");
             $table->timestamps();
         });

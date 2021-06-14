@@ -60,7 +60,7 @@ class User extends Authenticatable
     ];
 
 
-    public function phone() {
-        return $this->hasMany('App\Models\Phone','mobile_access_token','mobile_access_token');
+    public function mobileAccessToken() {
+        return $this->hasMany('App\Models\MobileAccessToken');
     }
 }

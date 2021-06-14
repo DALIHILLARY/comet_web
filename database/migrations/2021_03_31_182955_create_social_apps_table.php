@@ -14,6 +14,7 @@ class CreateSocialAppsTable extends Migration
     public function up()
     {
         Schema::create('social_apps', function (Blueprint $table) {
+            $table->id();
             $table->string("imei");
             $table->string("contact");
             $table->enum("type",["incoming","outgoing"]);

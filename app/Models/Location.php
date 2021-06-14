@@ -2,18 +2,18 @@
 
 namespace App\Models;
 
-use Database\Factories\AppFactory;
+use Database\Factories\LocationFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class App extends Model
+class Location extends Model
 {
     use HasFactory;
     protected $guarded = [];
 
     protected static function newFactory()
     {
-        return AppFactory::new();
+        return LocationFactory::new();
     }
 
     public function phone() {

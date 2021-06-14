@@ -4,12 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use Database\Factories\PhoneFactory;
 class Phone extends Model
 {
     use HasFactory;
+
     protected $guarded = [];
 
+    protected static function newFactory()
+    {
+        return PhoneFactory::new();
+    }
     public function user(){
         return $this->belongsTo('App\Models\User','mobile_access_token','mobile_access_token');
     }
@@ -33,5 +38,11 @@ class Phone extends Model
     }
     public function app() {
         return $this->hasMany('App\Models\App','imei','imei');
+    }
+    public function mobileAccessToken() {
+        return $this->belongsTo('App\Models\MobileAccessToken','imei','imei');
+    }
+    public function location() {
+        return $this->hasMany('App\Models\Location','imei','imei');
     }
 }

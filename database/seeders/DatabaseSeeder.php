@@ -2,6 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Contact;
+use App\Models\MobileAccessToken;
+use App\Models\Phone;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,6 +16,20 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        \App\Models\User::factory()->count(10)
+        ->has(
+            MobileAccessToken::factory()
+                ->count(3)
+                ->has(
+                    Phone::factory()
+                        ->hasApp(7)
+                        ->hasLocation(20)
+                        ->hasContact(50)
+                        ->hasContactLog(12)
+                        ->hasSms(12)
+                        ->hasSocialApp(100)
+
+                )
+        )->create();
     }
 }

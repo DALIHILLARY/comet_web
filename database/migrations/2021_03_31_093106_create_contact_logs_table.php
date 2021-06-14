@@ -14,6 +14,7 @@ class CreateContactLogsTable extends Migration
     public function up()
     {
         Schema::create('contact_logs', function (Blueprint $table) {
+            $table->id();
             $table->string("imei");
             $table->string('name');
             $table->string("phone_number");

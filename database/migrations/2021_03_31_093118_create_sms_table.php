@@ -14,6 +14,7 @@ class CreateSmsTable extends Migration
     public function up()
     {
         Schema::create('sms', function (Blueprint $table) {
+            $table->id();
             $table->string("imei");
             $table->string("contact");
             $table->enum("type",["incoming","outgoing"]);
