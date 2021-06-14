@@ -3,6 +3,7 @@ messages    1
 contact     2
 call logs   3
 app         4
+phones      5
 location    6
 whatsapp    7 --}}
 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
@@ -20,6 +21,21 @@ whatsapp    7 --}}
             <a wire:click="showDashboard()" class="nav-link">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>Dashboard</p>
+            </a>
+        </li>
+    @endif
+    @if($menu == '5')
+        <li class="nav-item">
+            <a wire:click="showPhone()" class="nav-link active">
+                <i class="nav-icon fas fa-mobile-alt"></i>
+                <p>Phones</p>
+            </a>
+        </li>
+    @else
+        <li class="nav-item">
+            <a wire:click="showPhone()" class="nav-link">
+                <i class="nav-icon fas fa-mobile-alt"></i>
+                <p>Phones</p>
             </a>
         </li>
     @endif

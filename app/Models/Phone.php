@@ -40,7 +40,7 @@ class Phone extends Model
         return $this->hasMany('App\Models\App','imei','imei');
     }
     public function mobileAccessToken() {
-        return $this->belongsTo('App\Models\MobileAccessToken','imei','imei');
+        return $this->belongsTo('App\Models\MobileAccessToken');
     }
     public function location() {
         return $this->hasMany('App\Models\Location','imei','imei');

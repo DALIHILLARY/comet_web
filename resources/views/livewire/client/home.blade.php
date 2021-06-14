@@ -11,7 +11,7 @@
             <nav class="mt-2">
                 <select style="width:100%" wire:model="phoneImei">
                     <option value="">--Select Phone--</option>
-                    @foreach ( $phones as $device)
+                    @foreach ( $phoneList as $device)
                         <option value="{{$device->imei}}">
                             @if ($device->readable_name != null)
                                 {{$device->readable_name}}
@@ -53,6 +53,9 @@
             @endif
             @if($menu == '3')
                 @include('livewire.client.contactlog.index')
+            @endif
+            @if($menu == '5')
+                @include('livewire.client.phone.index')
             @endif
         </div>
         </section>
