@@ -25,6 +25,7 @@ class MobileAccessTokenFactory extends Factory
     {
         return [
             'token' => Str::random(7),
+            'active' => $this->faker->randomElement(['yes','no']),
         ];
     }
 }
