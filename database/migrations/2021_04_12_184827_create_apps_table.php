@@ -1,4 +1,4 @@
-<?php
+'name<?php
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -17,7 +17,7 @@ class CreateAppsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('imei');
-            $table->string('package_name');
+            $table->string('package_name')->nullable();
             $table->string('photo_url')->nullable();
             $table->timestamps();
         });

@@ -45,17 +45,6 @@
 <body class="hold-transition sidebar-mini layout-fixed">
     <!-- Site wrapper -->
     <div class="wrapper">
-      <!-- Navbar -->
-      <nav class="main-header navbar navbar-expand navbar-dark">
-        <!-- Left navbar links -->
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-          </li>
-        </ul>
-
-      </nav>
-      <!-- /.navbar -->
         @livewire('client.home')
       {{-- <footer class="main-footer">
         <div class="float-right d-none d-sm-block">

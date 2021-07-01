@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\User::factory()->count(10)
+        \App\Models\User::factory()->count(2)
         ->has(
             MobileAccessToken::factory()
                 ->count(3)

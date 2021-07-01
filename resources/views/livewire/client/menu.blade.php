@@ -5,11 +5,12 @@ call logs   3
 app         4
 phones      5
 location    6
-whatsapp    7 --}}
+whatsapp    7
+token       8 --}}
 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
     <!-- Add icons to the links using the .nav-icon class
             with font-awesome or any other icon font library -->
-    @if($menu == '0')
+    {{-- @if($menu == '0')
         <li class="nav-item">
             <a wire:click="showDashboard()" class="nav-link active">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -23,7 +24,7 @@ whatsapp    7 --}}
                 <p>Dashboard</p>
             </a>
         </li>
-    @endif
+    @endif --}}
     @if($menu == '5')
         <li class="nav-item">
             <a wire:click="showPhone()" class="nav-link active">
@@ -166,6 +167,21 @@ whatsapp    7 --}}
             </a>
         </li>
     @endif
+    @if($menu == '8')
+        <li class="nav-item">
+            <a wire:click="newToken()" class="nav-link active">
+                <i class="nav-icon fas fa-coins"></i>
+                <p>New Token</p>
+            </a>
+        </li>
+    @else
+        <li class="nav-item">
+            <a wire:click="newToken()" class="nav-link">
+                <i class="nav-icon fas fa-coins"></i>
+                <p>New Token</p>
+            </a>
+        </li>
+    @endif
     {{-- <li class="nav-item">
         <a href="{{url("location")}}" class="nav-link">
             <i class="nav-icon fas fa-map"></i>
@@ -217,17 +233,17 @@ whatsapp    7 --}}
             </a>
         </li> --}}
 
-    <li class="nav-item">
     <form method="POST" action="{{ route('logout') }}" >
         @csrf
+        <li class="nav-item">
+            <a  class="nav-link" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                            this.closest('form').submit();">
+                &nbsp;&nbsp;<i class="nav-icon fas fa-sign-out-alt"></i>
+                <p> Logout</p>
 
-        <a  class="nav-link" href="{{ route('logout') }}"
-                            onclick="event.preventDefault();
-                                        this.closest('form').submit();">
-            <br>&nbsp;&nbsp;&nbsp;&nbsp;<i class="nav-icon fas fa-sign-out-alt"></i>
-            <p>Logout</p>
+            </a>
+        </li>
 
-        </a>
     </form>
-    </li>
     </ul>

@@ -10,10 +10,12 @@
         id: 'mapbox/streets-v11',
         accessToken: 'pk.eyJ1IjoiZGFsaWhpbGxhcnkiLCJhIjoiY2s1c2ZhYnp1MDF2NDNsbDd0bTNjM3RzNCJ9._wzQ6YFFVtt5c_KAbsd1XA'
     }).addTo(mymap);
+    var jsLocationList = <?php echo json_encode($locationList); ?> 
+    for(let long in jsLocationList) {
+        L.marker([jsLocationList[long],long]).addTo(mymap);
+    }
 
-    var array = @this.locationList
-    console.log(array);
-    array.forEach(element => {
-        console.log(element);
-    });
+    // var array = @this.locationList
+
+    // console.log(array);
 </script>

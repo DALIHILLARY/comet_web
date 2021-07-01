@@ -18,6 +18,7 @@ class CreateLocationsTable extends Migration
             $table->string("imei");
             $table->float('latitude');
             $table->float('longitude');
+            $table->string('date');
             $table->timestamps();
         });
     }

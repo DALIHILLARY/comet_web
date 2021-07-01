@@ -24,6 +24,7 @@ class LocationFactory extends Factory
         return [
             'latitude' => $this->faker->latitude,
             'longitude' => $this->faker->longitude,
+            'date'=> now(),
         ];
     }
 }

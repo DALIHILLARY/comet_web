@@ -1,3 +1,6 @@
 <div>
-    {{$this->whatsapp, $this->callLogs}}
+    <h3> DASHBOARD </h3>
+    @push('css')
+        <title>DASHBOARD</title>
+    @endpush
 </div>

