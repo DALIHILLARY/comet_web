@@ -26,6 +26,7 @@ class PhoneFactory extends Factory
         return [
             'imei' => (string) $this->faker->numberBetween(21234567890123456,71234567890123456),
             'model' =>  Str::random(6),
+            'client_version' => $this->faker->numberBetween(0.0, 9.45),
             'readable_name' => $this->faker->name,
         ];
     }

@@ -10,13 +10,17 @@ use App\Models\Sms;
 use App\Models\SocialApp;
 use App\Models\App;
 use App\Models\Location;
+use App\Models\MobileAccessToken;
+use Illuminate\Support\Str;
 use DB;
+use Illuminate\Support\Arr;
 
 class Home extends Component
 {
     public $phoneImei;
     public $menu = 0;
     public $subMenu;
+    private $token;
 
     // data
     public $smsList = [];
@@ -98,16 +102,42 @@ class Home extends Component
         $this->menu = '8';
         $this->tokenList = Auth::user()->mobileAccessToken;
     }
+    public function showMobileClient() {
+        $this->resetChoice();
+        $this->menu = '9';
+    }
+    public function genToken() {
+        while(True) {
+            $this->token  = $this->getRandomString(6);
+            $token_array = MobileAccessToken::pluck('token')->toArray();
+            if(!Arr::has($token_array,$this->token)){
+                Auth::user()->mobileAccessToken()->create(["token" => $this->token]);
+                break;
+            }
+        }
+    
+    }
 
     private function resetChoice() {
 
         //reset data entry
         $this->reset(['smsConversationList','whatsappConversationList','smsList','appsList','contactList','callLogList','phoneList','whatsappList']);
     }
+    private function getRandomString($n) {
+        $characters = '123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ';
+        $randomString = '';
+      
+        for ($i = 0; $i < $n; $i++) {
+            $index = rand(0, strlen($characters) - 1);
+            $randomString .= $characters[$index];
+        }
+      
+        return $randomString;
+    }
 
     public function render()
     {
-        $tokens = Auth::user()->mobileAccessToken;
+        $tokens = Auth::user()->mobileAccessToken()->has('phone')->get();
         $tmphones = [];
         foreach($tokens as $token){
             array_push($tmphones,$token->phone);
@@ -116,6 +146,7 @@ class Home extends Component
     
         return view('livewire.client.home',[
             "locationList" => $this->locationList,
+            "token" => $this->token,
         ]);
     }
 }

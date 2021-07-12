@@ -74,6 +74,9 @@
             @if ($menu == '8')
                 @include('livewire.client.token.index')
             @endif
+            @if ($menu == '9')
+                @include('livewire.client.mobile.index')
+            @endif
         </div>
         </section>
         <!-- /.content -->

@@ -12,6 +12,13 @@
     <!-- /.card-header -->
     <div class="card-body">
       Click the below button to generate a token
+      @if ($token ==  null)
+        <button type="button" class="btn btn-block btn-outline-primary btn-flat" wire:click="genToken">New Token</button> 
+      
+      @else
+        <button type="button" class="btn btn-block btn-outline-primary btn-flat disabled">New Token</button> 
+        <br>NEW TOKEN:  <b> {{$token}} </b>
+      @endif
     </div>
     <!-- /.card-body -->
   </div>
@@ -27,8 +34,12 @@
     </div>
     <!-- /.card-header -->
     <div class="card-body">
-      Make MONTHLY PAYMENTS using any of the acceptable below payment methods AND include <b>token as the reason</b>
-      <br>AIRTEL MONEY +256 751028655
+      Take Note of this token Somewhere Private
+      <br>Each TOKEN Can ONLY WORK ON ONE PHONE
+      <br>THIS TOKEN WILL BE ACTIVE FOR ONLY 3 DAYS AFTER WHICH ACTIVATION IS REQUIRED
+      <br>TO ACTIVATE, Make MONTHLY (150,000 UGX) PAYMENTS using any of the acceptable below payment methods AND include <b>token as the reason</b>
+      <br>AIRTEL MONEY  +256 751028655
+      <br>MTN MOMO      +256 760087659 
       <br>CHIPPER CASH   ......
 
     </div>
@@ -46,11 +57,11 @@
     </div>
     <!-- /.card-header -->
     <div class="card-body">
-      Wait for token to be verified by Administrator
+      Wait for token to be verified by Administrator in less than one hour
     </div>
     <!-- /.card-body -->
   </div>
-  <div class="card card-outline card-primary">
+  {{-- <div class="card card-outline card-primary">
     <div class="card-header">
       <h3 class="card-title">Primary Outline</h3>
 
@@ -65,6 +76,6 @@
       The body of the card
     </div>
     <!-- /.card-body -->
-  </div>
+  </div> --}}
 
 {{-- </div> --}}

@@ -11,8 +11,7 @@
     @endif
 
     <div class="card-body">
-        <button type="button" class="btn btn-block btn-outline-primary btn-flat">New Token</button> 
+        @include('livewire.client.token.create')
     </div>
-    @include('livewire.client.token.create')
 
 </div>

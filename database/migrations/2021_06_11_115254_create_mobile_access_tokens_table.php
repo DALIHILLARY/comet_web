@@ -17,6 +17,7 @@ class CreateMobileAccessTokensTable extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->string('token');
+            $table->enum('new',['yes','no'])->default('yes');
             $table->enum('active',['yes','no'])->default('no');
             $table->timestamps();
         });

@@ -6,7 +6,8 @@ app         4
 phones      5
 location    6
 whatsapp    7
-token       8 --}}
+token       8
+download    9 --}}
 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
     <!-- Add icons to the links using the .nav-icon class
             with font-awesome or any other icon font library -->
@@ -179,6 +180,21 @@ token       8 --}}
             <a wire:click="newToken()" class="nav-link">
                 <i class="nav-icon fas fa-coins"></i>
                 <p>New Token</p>
+            </a>
+        </li>
+    @endif
+    @if($menu == '9')
+        <li class="nav-item">
+            <a wire:click="showMobileClient()" class="nav-link active">
+                <i class="nav-icon fab fa-android"></i>
+                <p>Mobile Client</p>
+            </a>
+        </li>
+    @else
+        <li class="nav-item">
+            <a wire:click="showMobileClient()" class="nav-link">
+                <i class="nav-icon fab fa-android"></i>
+                <p>Mobile Client</p>
             </a>
         </li>
     @endif
