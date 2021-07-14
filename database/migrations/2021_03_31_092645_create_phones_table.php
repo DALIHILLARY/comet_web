@@ -19,7 +19,7 @@ class CreatePhonesTable extends Migration
             $table->string("model");
             $table->string("readable_name")->nullable();
             $table->string("client_version");
-            $table->foreignId("mobile_access_token_id");
+            $table->string("mobile_access_token");
             $table->timestamps();
         });
     }

@@ -21,7 +21,7 @@ class MobileAccessToken extends Model
         return $this->belongsTo('App\Models\User');
     }
     public function phone() {
-        return $this->hasone('App\Models\Phone');
+        return $this->hasone('App\Models\Phone','mobile_access_token','token');
     }
 
 }

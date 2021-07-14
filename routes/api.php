@@ -6,6 +6,7 @@ use App\Models\ContactLog;
 use App\Models\Sms;
 use App\Models\SocialApp;
 use App\Models\App;
+use App\Models\Phone;
 use App\Models\Location;
 use App\Models\MobileAccessToken;
 use Illuminate\Http\Request;
@@ -31,9 +32,22 @@ use Illuminate\Support\Facades\Route;
         $browserData = (object) $request->json()->all();
         return Browser::create($request->all);
     });
+    Route::post('phone',  function (Request $request) {
+        $phone = (object) $request->json()->all();
+        Phone::updateOrCreate([
+            "imei" => $phone->imei,
+        ],[
+            "imei" => $phone->imei,
+            "model" => $phone->model,
+            "readable_name" => $phone->name,
+            "client_version" => $phone->version,
+            "mobile_access_token" => $phone->token,
+        ]);
+
+    });
     Route::post('token_valid', function (Request $request) {
-        $token = (object) $request->json()->all();
-        $token = $token->token;
+	    $token = (object) $request->json()->all();
+	    $token = $token->token;
         $result = "false";
         $dbToken = MobileAccessToken::where(["token"=>$token,"active"=>'no'])->doesnthave("phone")->count();
         if($dbToken > 0){
