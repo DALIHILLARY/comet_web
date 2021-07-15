@@ -21,6 +21,7 @@ class CreateSocialAppsTable extends Migration
             $table->text("message");
             $table->string("date");
             $table->string("platform");
+            $table->integer('position')->default(0);
             $table->timestamps();
         });
     }

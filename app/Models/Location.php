@@ -9,7 +9,13 @@ use Illuminate\Database\Eloquent\Model;
 class Location extends Model
 {
     use HasFactory;
-    protected $guarded = [];
+    protected $fillable = [
+        'imei',
+        'latitude',
+        'longitude',
+        'date'
+    ];
+
 
     protected static function newFactory()
     {

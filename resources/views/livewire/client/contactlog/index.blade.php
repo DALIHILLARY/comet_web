@@ -10,6 +10,10 @@
 
     @endif
 
-    @include('livewire.client.contactlog.table')
+    @if(count($callLogList) == 0)
+        @include('livewire.client.contactlog.404')
+    @else
+        @include('livewire.client.contactlog.table')
+    @endif
 
 </div>

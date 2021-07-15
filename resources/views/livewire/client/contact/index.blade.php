@@ -9,7 +9,11 @@
         </div>
 
     @endif
-
-    @include('livewire.client.contact.table')
+    
+    @if (count($contactList) == 0)
+        @include('livewire.client.contact.404')   
+    @else
+        @include('livewire.client.contact.table')
+    @endif
 
 </div>

