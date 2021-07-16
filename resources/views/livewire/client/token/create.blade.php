@@ -61,9 +61,9 @@
     </div>
     <!-- /.card-body -->
   </div>
-  {{-- <div class="card card-outline card-primary">
+  <div class="card card-outline card-primary">
     <div class="card-header">
-      <h3 class="card-title">Primary Outline</h3>
+      <h3 class="card-title">STEP 4</h3>
 
       <div class="card-tools">
         <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
@@ -73,9 +73,9 @@
     </div>
     <!-- /.card-header -->
     <div class="card-body">
-      The body of the card
+      Go to <em><b>Mobile Client Option</b></em> Download the App and follow the procedures
     </div>
     <!-- /.card-body -->
-  </div> --}}
+  </div>
 
 {{-- </div> --}}

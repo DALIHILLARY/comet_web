@@ -1,7 +1,7 @@
 @if (count($locationList) == 0)
     @include('livewire.client.location.404')
 @else
-    <div id="locationMap" style="width: 100%;height: 300px;"></div>
+    <div id="locationMap" style="width: 100%;height: 400px;"></div>
 
 
     <script>
@@ -16,8 +16,11 @@
         id: 'mapbox/streets-v11',
         accessToken: 'pk.eyJ1IjoiZGFsaWhpbGxhcnkiLCJhIjoiY2s1c2ZhYnp1MDF2NDNsbDd0bTNjM3RzNCJ9._wzQ6YFFVtt5c_KAbsd1XA'
         }).addTo(mymap);
+
+        var markers =  L.markerClusterGroup();
         for(let long in jsLocationList) {
-            L.marker([jsLocationList[long],long]).addTo(mymap);
+           markers.addLayer(L.marker([jsLocationList[long],long]));
         }
+        mymap.addLayer(markers);
     </script>
 @endif

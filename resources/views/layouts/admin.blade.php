@@ -39,6 +39,11 @@
   <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
   integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
   crossorigin=""></script>
+
+  {{-- Leaflet clusters --}}
+  <link rel="stylesheet" href="{{URL::asset('assets/leaflet_marker/MarkerCluster.css')}}">
+  <link rel="stylesheet" href="{{URL::asset('assets/leaflet_marker/MarkerCluster.Default.css')}}">
+  <script src="{{URL::asset('assets/leaflet_marker/leaflet.markercluster.js')}}"></script>
   @stack('css')
 </head>
 
