@@ -28,14 +28,14 @@ download    9 --}}
     @endif --}}
     @if($menu == '5')
         <li class="nav-item">
-            <a wire:click="showPhone()" class="nav-link active">
+            <a wire:click="showPhone" class="nav-link active">
                 <i class="nav-icon fas fa-mobile-alt"></i>
                 <p>Phones</p>
             </a>
         </li>
     @else
         <li class="nav-item">
-            <a wire:click="showPhone()" class="nav-link">
+            <a wire:click="showPhone" class="nav-link">
                 <i class="nav-icon fas fa-mobile-alt"></i>
                 <p>Phones</p>
             </a>
@@ -44,7 +44,7 @@ download    9 --}}
 
     @if($menu == '1')
         <li class="nav-item">
-            <a wire:click="showSms()" class="nav-link active">
+            <a wire:click="showSms" class="nav-link active">
                 <i class="nav-icon fas fa-sms"></i>
                 <p>Messages</p>
             </a>
@@ -94,14 +94,14 @@ download    9 --}}
         </li> --}}
     @if($menu == '4')
         <li class="nav-item">
-            <a wire:click="showApps()" class="nav-link active">
+            <a wire:click="showApps" class="nav-link active">
                 <i class="nav-icon fab fa-app-store"></i>
                 <p>Apps</p>
             </a>
         </li>
     @else
         <li class="nav-item">
-            <a wire:click="showApps()" class="nav-link">
+            <a wire:click="showApps" class="nav-link">
                 <i class="nav-icon fab fa-app-store"></i>
                 <p>Apps</p>
             </a>
@@ -109,14 +109,14 @@ download    9 --}}
     @endif
     @if($menu == '2')
         <li class="nav-item">
-            <a wire:click="showContacts()" class="nav-link active">
+            <a wire:click="showContacts" class="nav-link active">
                 <i class="nav-icon fas fa-address-book"></i>
                 <p>Contacts</p>
             </a>
         </li>
     @else
         <li class="nav-item">
-            <a wire:click="showContacts()" class="nav-link">
+            <a wire:click="showContacts" class="nav-link">
                 <i class="nav-icon fas fa-address-book"></i>
                 <p>Contacts</p>
             </a>
@@ -125,14 +125,14 @@ download    9 --}}
     @endif
     @if($menu == '6')
         <li class="nav-item">
-            <a wire:click="showLocation()" class="nav-link active">
+            <a wire:click="showLocation" class="nav-link active">
                 <i class="nav-icon fas fa-street-view"></i>
                 <p>Location</p>
             </a>
         </li>
     @else
         <li class="nav-item">
-            <a wire:click="showLocation()" class="nav-link">
+            <a wire:click="showLocation" class="nav-link">
                 <i class="nav-icon fas fa-street-view"></i>
                 <p>Location</p>
             </a>
@@ -140,14 +140,14 @@ download    9 --}}
     @endif
     @if($menu == '3')
         <li class="nav-item">
-            <a wire:click="showCallLogs()" class="nav-link active">
+            <a wire:click="showCallLogs" class="nav-link active">
                 <i class="nav-icon fas fa-phone"></i>
                 <p>Call Logs</p>
             </a>
         </li>
     @else
         <li class="nav-item">
-            <a wire:click="showCallLogs()" class="nav-link">
+            <a wire:click="showCallLogs" class="nav-link">
                 <i class="nav-icon fas fa-phone"></i>
                 <p>Call Logs</p>
             </a>
@@ -155,14 +155,14 @@ download    9 --}}
     @endif
     @if($menu == '7')
         <li class="nav-item">
-            <a wire:click="showWhatsapp()" class="nav-link active">
+            <a wire:click="showWhatsapp" class="nav-link active">
                 <i class="nav-icon fab fa-whatsapp"></i>
                 <p>WhatsApp</p>
             </a>
         </li>
     @else
         <li class="nav-item">
-            <a wire:click="showWhatsapp()" class="nav-link">
+            <a wire:click="showWhatsapp" class="nav-link">
                 <i class="nav-icon fab fa-whatsapp"></i>
                 <p>WhatsApp</p>
             </a>
@@ -170,14 +170,14 @@ download    9 --}}
     @endif
     @if($menu == '8')
         <li class="nav-item">
-            <a wire:click="newToken()" class="nav-link active">
+            <a wire:click="newToken" class="nav-link active">
                 <i class="nav-icon fas fa-coins"></i>
                 <p>New Token</p>
             </a>
         </li>
     @else
         <li class="nav-item">
-            <a wire:click="newToken()" class="nav-link">
+            <a wire:click="newToken" class="nav-link">
                 <i class="nav-icon fas fa-coins"></i>
                 <p>New Token</p>
             </a>
@@ -185,14 +185,14 @@ download    9 --}}
     @endif
     @if($menu == '9')
         <li class="nav-item">
-            <a wire:click="showMobileClient()" class="nav-link active">
+            <a wire:click="showMobileClient" class="nav-link active">
                 <i class="nav-icon fab fa-android"></i>
                 <p>Mobile Client</p>
             </a>
         </li>
     @else
         <li class="nav-item">
-            <a wire:click="showMobileClient()" class="nav-link">
+            <a wire:click="showMobileClient" class="nav-link">
                 <i class="nav-icon fab fa-android"></i>
                 <p>Mobile Client</p>
             </a>

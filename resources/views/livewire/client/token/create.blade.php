@@ -73,7 +73,7 @@
     </div>
     <!-- /.card-header -->
     <div class="card-body">
-      Go to <em><b>Mobile Client Option</b></em> Download the App and follow the procedures
+      Go to <a href="#"><em wire:click="showMobileClient"><b>Mobile Client Option</b></em></a> Download the App and follow the procedures
     </div>
     <!-- /.card-body -->
   </div>

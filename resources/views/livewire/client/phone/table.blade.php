@@ -7,7 +7,7 @@
                 {{-- <th>Date</th> --}}
                 <th>Expire Date</th>
                 <th>Client Version</th>
-                <th>Action</th>
+                {{-- <th>Action</th> --}}
             </tr>
         </thead>
         <tbody>
@@ -18,11 +18,11 @@
                 {{-- <td>{{$phone->created_at}}</td> --}}
                 <td>{{date('Y-m-d H:i:s', strtotime($phone->mobileAccessToken->created_at . ' + 33 days'))}}</td>
                 <td>{{$phone->client_version}}</td>
-                <td>
+                {{-- <td>
                     <i class="fas fa-magic" type="button" data-toggle="tooltip" data-placement="left" title="Renew"></i>
                     <i class="fas fa-power-off"data-toggle="modal" data-target="#modal-default" type="button"></i>
                     
-                </td>
+                </td> --}}
             </tr>
             @endforeach
 

