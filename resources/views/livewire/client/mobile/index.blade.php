@@ -23,7 +23,7 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-                <button type="button" class="btn btn-block btn-outline-primary btn-flat" wire:click="download">CLICK HERE</button> 
+                <button type="button" class="btn btn-block btn-outline-primary btn-flat toastrDefaultSuccess" wire:click="download">CLICK HERE</button> 
                 <ul>
                   <li>Install The Application in Victim Device</li>
                 </ul>
@@ -99,4 +99,12 @@
         <!-- /.card-body -->
       </div>  
     </div>
+
+    <script type="text/javascript">
+      $(function() {
+        $('.toastrDefaultSuccess').click(function() {
+            toastr.success('Download will start shortly, Please wait!...')
+          });
+      });
+    </script>
 </div>

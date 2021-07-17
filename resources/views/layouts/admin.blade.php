@@ -25,6 +25,9 @@
   <link rel="stylesheet" href="{{URL::asset('assets/adminite/plugins/daterangepicker/daterangepicker.css')}}">
   <!-- summernote -->
   <link rel="stylesheet" href="{{URL::asset('assets/adminite/plugins/summernote/summernote-bs4.css')}}">
+  <!-- Toastr -->
+  <link rel="stylesheet" href="{{URL::asset('assets/adminite/plugins/toastr/toastr.min.css')}}">
+
   {{-- <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet"> --}}
  <!-- DataTables -->
@@ -110,6 +113,8 @@
 <script src="{{URL::asset('assets/adminite/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
 <script src="{{URL::asset('assets/adminite/plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
 <script src="{{URL::asset('assets/adminite/plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
+<!-- Toastr -->
+<script src="{{URL::asset('assets/adminite/plugins/toastr/toastr.min.js')}}"></script>
 
 @livewireScripts
 @stack('scripts')

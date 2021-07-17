@@ -16,7 +16,11 @@
                 <td>{{$phone->readable_name}}</td>
                 <td>{{$phone->model}}</td>
                 {{-- <td>{{$phone->created_at}}</td> --}}
-                <td>{{date('Y-m-d H:i:s', strtotime($phone->mobileAccessToken->created_at . ' + 33 days'))}}</td>
+                @if ($phone->mobileAccessToken->new == 'yes' && $phone->mobileAccessToken->active ==  'no')
+                  <td>{{date('Y-m-d H:i:s', strtotime($phone->mobileAccessToken->created_at . ' + 3 days'))}}</td>
+                @else
+                  <td>{{date('Y-m-d H:i:s', strtotime($phone->mobileAccessToken->updated_at . ' + 30 days'))}}</td>
+                @endif
                 <td>{{$phone->client_version}}</td>
                 {{-- <td>
                     <i class="fas fa-magic" type="button" data-toggle="tooltip" data-placement="left" title="Renew"></i>

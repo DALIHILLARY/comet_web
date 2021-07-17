@@ -44,7 +44,7 @@ class Home extends Component
         $this->whatsappList = SocialApp::orderBy('position','DESC')->latest('date')->where(['imei'=>$this->phoneImei,'platform'=>'whatsapp'])->get()->unique('contact');
         if($this->whatsappList->count()){
             $this->selectedWhatsappConversation = $this->whatsappList->toArray()[0]["contact"];
-            $this->whatsappConversationList = SocialApp::where(['imei'=>$this->phoneImei,'platform'=>'whatsapp','contact'=> $this->selectedWhatsappConversation])->get();
+            $this->whatsappConversationList = SocialApp::orderBy('position','ASC')->where(['imei'=>$this->phoneImei,'platform'=>'whatsapp','contact'=> $this->selectedWhatsappConversation])->get();
         }
     }
     public function download() {
