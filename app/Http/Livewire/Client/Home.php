@@ -52,7 +52,7 @@ class Home extends Component
     }
     public function showWhatsappConversation($contact) {
         $this->selectedWhatsappConversation = $contact;
-        $this->whatsappConversationList = SocialApp::where(['imei'=>$this->phoneImei,'platform'=>'whatsapp','contact'=> $contact])->get();
+        $this->whatsappConversationList = SocialApp::orderBy('position','ASC')->where(['imei'=>$this->phoneImei,'platform'=>'whatsapp','contact'=> $contact])->get();
     }
     public function showSms() {
         $this->resetChoice();
