@@ -47,6 +47,8 @@
         <!-- Main content -->
         <section class="content">
         <div class="container-fluid">
+            <div wire:loading.delay class="bg-primary text-white text-center w-100"><b>Loading ...</b></div>
+
             @if($menu == '0')
                 @include('livewire.client.dashboard')
             @endif
