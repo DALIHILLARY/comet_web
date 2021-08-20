@@ -37,10 +37,10 @@
       Take Note of this token Somewhere Private
       <br>Each TOKEN Can ONLY WORK ON ONE PHONE
       <br>THIS TOKEN WILL BE ACTIVE FOR ONLY 3 DAYS AFTER WHICH ACTIVATION IS REQUIRED
-      <br>TO ACTIVATE, Make MONTHLY (150,000 UGX) PAYMENTS using any of the acceptable below payment methods AND include <b>token as the reason</b>
+      <br>TO ACTIVATE, Make MONTHLY (50,000 UGX) PAYMENTS using any of the acceptable below payment methods AND include <b>token as the reason</b>
       <br>AIRTEL MONEY  +256 751028655
       <br>MTN MOMO      +256 760087659 
-      <br>CHIPPER CASH   ......
+      <br>CHIPPER CASH   @c0m3t
 
     </div>
     <!-- /.card-body -->
