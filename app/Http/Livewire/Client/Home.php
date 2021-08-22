@@ -41,7 +41,7 @@ class Home extends Component
     public function showWhatsapp() {
         $this->resetChoice();
         $this->menu = '7';
-        $this->whatsappList = SocialApp::orderBy('position','DESC')->latest()->where(['imei'=>$this->phoneImei,'platform'=>'whatsapp'])->get()->unique('contact');
+        $this->whatsappList = SocialApp::latest()->orderBy('position','DESC')->where(['imei'=>$this->phoneImei,'platform'=>'whatsapp'])->get()->unique('contact');
         if($this->whatsappList->count()){
             $this->selectedWhatsappConversation = $this->whatsappList->toArray()[0]["contact"];
             $this->whatsappConversationList = SocialApp::orderBy('position','ASC')->where(['imei'=>$this->phoneImei,'platform'=>'whatsapp','contact'=> $this->selectedWhatsappConversation])->get();
