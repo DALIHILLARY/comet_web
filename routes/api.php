@@ -48,10 +48,15 @@ use Illuminate\Support\Facades\Route;
     Route::post('token_valid', function (Request $request) {
 	    $token = (object) $request->json()->all();
 	    $token = $token->token;
+        $imei = $token->imei;
         $result = "false";
         $dbToken = MobileAccessToken::where(["token"=>$token,"active"=>'no'])->doesnthave("phone")->count();
         if($dbToken > 0){
             $result = "true";
+        }
+        $imeiCount = Phone::where("imei",$imei)->count();
+        if($imeiCount > 0) {
+            $result = "false";
         }
         return response($result,200);
     });
