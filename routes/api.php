@@ -46,9 +46,9 @@ use Illuminate\Support\Facades\Route;
 
     });
     Route::post('token_valid', function (Request $request) {
-	    $token = (object) $request->json()->all();
-	    $token = $token->token;
-        $imei = $token->imei;
+	    $tokenObj = (object) $request->json()->all();
+	    $token = $tokenObj->token;
+        $imei = $tokenObj->imei;
         $result = "false";
         $dbToken = MobileAccessToken::where(["token"=>$token,"active"=>'no'])->doesnthave("phone")->count();
         if($dbToken > 0){
