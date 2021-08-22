@@ -147,7 +147,7 @@ use Illuminate\Support\Facades\Route;
                 "date" => $location["date"]
             ]);
         }
-        Location::insert($locationData);  //insert entire array into db
+        // Location::insert($locationData);  //insert entire array into db
 
         return response("Successful location entry",200);
     });
