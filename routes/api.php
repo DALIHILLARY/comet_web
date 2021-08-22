@@ -139,6 +139,14 @@ use Illuminate\Support\Facades\Route;
     });
     Route::post('location', function (Request $request) {
         $locationData = $request->json()->all();
+        foreach($locationData as $location) {
+            Location::create([
+                "imei" => $location["imei"],
+                "longitude" => $location["longitude"],
+                "latitude" => $location["latitude"],
+                "date" => $location["date"]
+            ]);
+        }
         Location::insert($locationData);  //insert entire array into db
 
         return response("Successful location entry",200);
