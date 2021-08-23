@@ -4,7 +4,7 @@
             <tr>
                 <th>Name</th>
                 <th>Model</th>
-                {{-- <th>Date</th> --}}
+                <th>Token</th>
                 <th>Expire Date</th>
                 <th>Client Version</th>
                 {{-- <th>Action</th> --}}
@@ -15,7 +15,7 @@
             <tr>
                 <td>{{$phone->readable_name}}</td>
                 <td>{{$phone->model}}</td>
-                {{-- <td>{{$phone->created_at}}</td> --}}
+                <td>{{$phone->mobileAccessToken->token}}</td>
                 @if ($phone->mobileAccessToken->new == 'yes' && $phone->mobileAccessToken->active ==  'no')
                   <td>{{date('Y-m-d H:i:s', strtotime($phone->mobileAccessToken->created_at . ' + 3 days'))}}</td>
 
