@@ -3,7 +3,7 @@
 @else
     <div id="locationMap" style="width: 100%;height: 400px;"></div>
 
-
+    @include('live.client.location.table')
     <script>
         var jsLocationList = <?php echo json_encode($locationList); ?> 
         for(let long in jsLocationList){
