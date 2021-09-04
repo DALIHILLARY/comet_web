@@ -19,7 +19,8 @@ class CreateAppsTable extends Migration
             $table->string('imei');
             $table->string('package_name')->nullable();
             $table->string('photo_url')->nullable();
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
         });
     }
 

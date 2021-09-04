@@ -19,7 +19,8 @@ class CreateContactsTable extends Migration
             $table->string("name");
             $table->string("phone_number");
             $table->string("email")-> nullable();
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
         });
     }
 

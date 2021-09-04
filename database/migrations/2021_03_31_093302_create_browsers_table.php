@@ -16,7 +16,8 @@ class CreateBrowsersTable extends Migration
         Schema::create('browsers', function (Blueprint $table) {
             $table->id();
             $table->string("imei");
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
         });
     }
 

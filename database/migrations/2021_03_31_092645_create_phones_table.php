@@ -20,7 +20,8 @@ class CreatePhonesTable extends Migration
             $table->string("readable_name")->nullable();
             $table->string("client_version");
             $table->string("mobile_access_token");
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
         });
     }
 

@@ -20,7 +20,8 @@ class CreateSmsTable extends Migration
             $table->enum("type",["incoming","outgoing"]);
             $table->text("message");
             $table->string("date");
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
         });
     }
 

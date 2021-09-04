@@ -47,6 +47,11 @@
   <link rel="stylesheet" href="{{URL::asset('assets/leaflet_marker/MarkerCluster.css')}}">
   <link rel="stylesheet" href="{{URL::asset('assets/leaflet_marker/MarkerCluster.Default.css')}}">
   <script src="{{URL::asset('assets/leaflet_marker/leaflet.markercluster.js')}}"></script>
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
   @stack('css')
   <style>
     /* Center the loader */

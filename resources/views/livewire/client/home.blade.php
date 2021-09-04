@@ -17,7 +17,7 @@
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
         <a href="{{url('/')}}" class="brand-link">
-            <span class="brand-text font-weight-light"><h3>RatComet(RC)</h3></span>
+            <span class="brand-text font-weight-light"><h3><img src="https://img.icons8.com/emoji/48/000000/rat-emoji.png"/>RatComet(RC)</h3></span>
         </a>
         <!-- Sidebar -->
         <div class="sidebar">
