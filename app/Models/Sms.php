@@ -9,6 +9,7 @@ class Sms extends Model
 {
     use HasFactory;
     protected $guarded = [];
+    public $timestamps = false;
 
     public function phone() {
         return $this->belongsTo('App\Models\Phone','imei','imei');

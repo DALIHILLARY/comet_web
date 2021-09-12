@@ -180,7 +180,7 @@ use Illuminate\Support\Facades\Route;
             // Location::insert($locationData);  //insert entire array into db
     
             return response("Successful location entry",200);
-        }catch( exception $e) {
+	}catch( exception $e) {
             return response("Something Went Wrong",200);
         }
         
