@@ -19,8 +19,7 @@ class CreateMobileAccessTokensTable extends Migration
             $table->string('token');
             $table->enum('new',['yes','no'])->default('yes');
             $table->enum('active',['yes','no'])->default('no');
-            $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->useCurrent();
+            $table->timestamps;
         });
     }
 
