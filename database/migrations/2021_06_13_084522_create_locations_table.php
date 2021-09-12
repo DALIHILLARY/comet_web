@@ -19,8 +19,6 @@ class CreateLocationsTable extends Migration
             $table->decimal('latitude',30,27);
             $table->decimal('longitude',30,27);
             $table->string('date');
-            $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->useCurrent();
         });
     }
 

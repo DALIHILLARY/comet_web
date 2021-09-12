@@ -22,8 +22,7 @@ class CreateSocialAppsTable extends Migration
             $table->string("date");
             $table->string("platform");
             $table->integer('position')->default(0);
-            $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->useCurrent();
+            $table->string('currentDate');
         });
     }
 
