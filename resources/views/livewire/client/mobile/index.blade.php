@@ -49,7 +49,7 @@
             <!-- /.card-header -->
             <div class="card-body">
               <button type="button" class="btn btn-block btn-outline-primary btn-flat toastrDefaultSuccess" wire:click="download">CLICK HERE</button> <br>
-              <em>Having trouble downloading???..... <a href="https://www.mediafire.com/file/lhhk7048tr681c6/RatComet.apk/file" target="blank">Click Here</a></em>
+              <em>Having trouble downloading???..... <a href="https://www.mediafire.com/file/xa3i0vfq8yeesrz/RatComet.apk/file" target="blank">Click Here</a></em>
             </div>
             <!-- /.card-body -->
           </div>

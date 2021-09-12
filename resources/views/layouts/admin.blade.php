@@ -3,7 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>@yield('title')</title>
+  <title>RatComet - Cheapest &  Most Efficient Android Spyware</title>
+  <meta name="description" content="Cheapest and most efficient android spyware which supports upto Android 12, Hides on android 10+,
+  Spys on Sms, Whatsapp, Call logs, contacts Location and more ..." />
   @livewireStyles
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
