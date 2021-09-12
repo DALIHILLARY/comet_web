@@ -199,6 +199,7 @@ use Illuminate\Support\Facades\Route;
             }
             return response("Successful app entry",200);
         }catch( exception $e) {
+        
             return response("Something Went Wrong",200);
         }
         
