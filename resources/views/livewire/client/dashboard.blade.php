@@ -14,6 +14,8 @@
             <li>When All is set Up, to view Phone data, Select the device from <b><em>--Select Phone--</em></b> in the Side Bar</li>
             <li>Then go through the various options like Whatsapp, Location, Sms, etc</li>
         </ol>
+        <x-embed url="https://youtu.be/z1RTJIoOAWw"/>
+
     </div>
     
 </div>

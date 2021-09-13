@@ -4,6 +4,8 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
+        <meta name="description" content="Cheapest and most efficient android spyware which supports upto Android 12, Hides on android 10+,
+        Spies on Sms, Whatsapp, Call logs, contacts Location and more ..." />
 
         <title>{{ config('app.name', 'Laravel') }}</title>
 
