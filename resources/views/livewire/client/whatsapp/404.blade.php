@@ -5,4 +5,5 @@
 </div> --}}
 <div style= "width: 100%; text-align: center;">
     <h3><b>NO WHATSAPP MESSAGES FOUND</b></h3>
+    @include('livewire.client.nodata')
 </div>

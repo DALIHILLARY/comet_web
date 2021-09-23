@@ -17,25 +17,42 @@
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
         <a href="{{url('/')}}" class="brand-link">
-            <span class="brand-text font-weight-light"><h3><img src="https://img.icons8.com/emoji/48/000000/rat-emoji.png"/>RatComet(RC)</h3></span>
-        </a>
+            <img src="https://img.icons8.com/emoji/48/000000/rat-emoji.png" alt="RatComet Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+            <span class="brand-text font-weight-light">RatComet(RC)</span>
+          </a>
         <!-- Sidebar -->
         <div class="sidebar">
             <!-- Sidebar Menu -->
             <nav class="mt-2">
-                <select style="width:100%" wire:model="phoneImei">
-                    <option value="">--Select Phone--</option>
-                    @foreach ( $phoneList as $device)
-                        <option value="{{$device->imei}}">
-                            @if ($device->readable_name != null)
-                                {{$device->readable_name}}
-                            @else
-                                {{$device->model}}
-                            @endif
-                        </option>
+                @if($menu != '0' && count($phoneList) != 0)
+                    <select style="width:100%" wire:model="phoneImei" class="form-control">
+                        <option value=""><em>Click Here</em></option>
+                        @foreach ( $phoneList as $device)
+                            <option value="{{$device->imei}}">
+                                @if ($device->readable_name != null)
+                                    {{$device->readable_name}}
+                                @else
+                                    {{$device->model}}
+                                @endif
+                            </option>
 
-                    @endforeach
-                </select>
+                        @endforeach
+                    </select>
+                @else
+                    <select style="width:100%" wire:model="phoneImei" class="form-control">
+                        <option value="">--No Phone--</option>
+                        @foreach ( $phoneList as $device)
+                            <option value="{{$device->imei}}">
+                                @if ($device->readable_name != null)
+                                    {{$device->readable_name}}
+                                @else
+                                    {{$device->model}}
+                                @endif
+                            </option>
+
+                        @endforeach
+                    </select>
+                @endif
                 @include('livewire.client.menu',['menu' => $menu])
             </nav>
             <!-- /.sidebar-menu -->
