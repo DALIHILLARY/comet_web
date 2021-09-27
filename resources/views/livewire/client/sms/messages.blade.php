@@ -1,4 +1,4 @@
-<div>
+<div class="direct-chat direct-chat-primary">
     @foreach ( $smsConversationList as $message)
     @if($message->type == "incoming")
         <!-- Message. Default to the left -->
