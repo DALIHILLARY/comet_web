@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>RatComet - Cheapest &  Most Efficient Android Spyware</title>
   <meta name="description" content="Cheapest and most efficient android spyware which supports upto Android 12, Hides on android 10+,
-  Spies on Sms, Whatsapp, Call logs, contacts Location and more ..." />
+  Spies on Sms, Whatsapp, Call logs, contacts Location, NO ROOT REQUIRED and more ..." />
   <x-embed-styles />
   @livewireStyles
   <!-- Tell the browser to be responsive to screen width -->
