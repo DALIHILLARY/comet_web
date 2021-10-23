@@ -74,10 +74,10 @@ use Illuminate\Support\Facades\Route;
         try{
             $tokenObj = (object) $request->json()->all();
             $token = $tokenObj->token;
-            $newToken = MobileAccessToken::where(["token"=>$token,"active"=>"no","new"=>"yes"])->pluck("updated_at");
+            $newToken = MobileAccessToken::where(["token"=>$token,"active"=>'no',"new"=>'yes'])->pluck("updated_at");
             if($newToken->count() > 0){
                 $tokenDate = $newToken->first();
-                if($tokenDate->diffInDays(now(),false) > 3) {
+                if($tokenDate->diffInHours(now(),false) > 2) {
                     MobileAccessToken::updateOrCreate(["token"=>$token],["new"=>"no"]);
                 }else{
                     $result = "true";

@@ -17,7 +17,19 @@
       
       @else
         <button type="button" class="btn btn-block btn-outline-primary btn-flat disabled">New Token</button> 
-        <br>NEW TOKEN:  <b> {{$token}} </b>
+        <br>NEW TOKEN:>>  <b> {{$token}} </b><br><br>
+        <div class="row">
+          <div class="col-sm-2">
+            <b>NOTE:</b>
+          </div>
+          <div class="col-sm-10">
+              <ul>
+                <li>This token will <em>disappear</em>. Copy or note it down somewhere</li>
+                <li>Each token will only work on 1 phone. Generate a new token if you want to add another victim phone</li>
+                <li>The token will <b>only be valid for 2 hours</b> after which payment should be made as described in <b>STEP 2</b></li>
+              </ul>
+          </div>
+        </div>
       @endif
     </div>
     <!-- /.card-body -->
@@ -34,10 +46,7 @@
     </div>
     <!-- /.card-header -->
     <div class="card-body">
-      Take Note of this token Somewhere Private
-      <br>Each TOKEN Can ONLY WORK ON ONE PHONE
-      <br>THIS TOKEN WILL BE ACTIVE FOR ONLY 3 DAYS AFTER WHICH ACTIVATION IS REQUIRED
-      <br>TO ACTIVATE, Make MONTHLY (50,000 UGX) PAYMENTS using any of the acceptable below payment methods AND include <b>token as the reason</b>
+      TO ACTIVATE, Make MONTHLY PAYMENTS of <b>14 USD ($14)</b> using any of the acceptable below payment methods AND include <b>token as the reason</b>
       <br>
       <hr>
       <div class="row">
