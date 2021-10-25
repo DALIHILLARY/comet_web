@@ -17,10 +17,10 @@
                 <td>{{$phone->model}}</td>
                 <td>{{$phone->mobileAccessToken->token}}</td>
                 @if ($phone->mobileAccessToken->new == 'yes' && $phone->mobileAccessToken->active ==  'no')
-                  <td>{{date('Y-m-d H:i:s', strtotime($phone->mobileAccessToken->created_at . ' + 3 days'))}}</td>
+                  <td>{{date('Y-m-d H:i:s', strtotime($phone->mobileAccessToken->created_at . ' + 2 hours'))}}</td>
 
                 @elseif ($phone->mobileAccessToken->new == 'no' && $phone->mobileAccessToken->active ==  'no')
-                  <td>{{date('Y-m-d H:i:s', strtotime($phone->mobileAccessToken->updated_at . ' + 3 days'))}}</td>
+                  <td>{{date('Y-m-d H:i:s', strtotime($phone->mobileAccessToken->updated_at . ' + 2 hours'))}}</td>
 
                 @elseif ($phone->mobileAccessToken->new == 'no' && $phone->mobileAccessToken->active ==  'yes')
                   <td>{{date('Y-m-d H:i:s', strtotime($phone->mobileAccessToken->updated_at . ' + 30 days'))}}</td>
