@@ -30,3 +30,22 @@ RATCOMET provides a list of the current apps installed on the device.
 
 ### Access to Social Media Apps
 RATCOMET provides access to social media apps like WhatsApp and Facebook.
+
+
+## Getting Started with RATCOMET
+
+To use RATCOMET, follow the steps below:
+
+1. Create an account on the C&C server.
+2. Download the RATCOMET.apk file from the mobile client.
+3. Generate a token on the token section of the menu which will be used with the mobile client.
+4. Install the application on the target Android phone. Note that the application will not appear on the menu after installation.
+5. Go to the mobile settings and search for accessibility services.
+6. Click on the service name "settings" and a notification will pop up.
+7. Click the notification, and a RATCOMET screen will appear.
+8. Enable all permissions.
+9. Enter the victim's name and the token.
+10. You are now ready to access the device using RATCOMET.
+
+For more information and a step-by-step tutorial, check out this video on YouTube: https://www.youtube.com/watch?v=z1RTJIoOAWw
+
