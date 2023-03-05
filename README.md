@@ -10,6 +10,9 @@ RATCOMET is designed to stay hidden on the Android device, meaning that it opera
 ### No Slowdown
 One of the most significant benefits of RATCOMET is that it does not slow down the Android device. This means that the device's performance remains unaffected, and users can access the device's data in real-time without any lag.
 
+### Offline Support
+Can collect data offline and export it when connected to the internet
+
 ### Access to Last Known Location
 RATCOMET provides access to the last known location of the Android device. This feature is particularly useful in the event of a lost or stolen device, as users can quickly determine the location of the device.
 
